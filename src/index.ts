@@ -17,6 +17,7 @@ declare global {
     }
   }
 }
+// chl ja yrr
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
