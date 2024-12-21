@@ -1,5 +1,12 @@
-import { Column, Entity, PrimaryGeneratedColumn, BeforeInsert } from "typeorm";
+import {
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+  BeforeInsert,
+  OneToMany,
+} from "typeorm";
 import * as bcrypt from "bcryptjs";
+import { courses } from "./Course";
 @Entity("users")
 export class User {
   @PrimaryGeneratedColumn()
@@ -16,7 +23,8 @@ export class User {
 
   @Column({ type: "varchar" })
   confirm_password!: string;
-
+  @OneToMany(() => courses, (course) => course.user)
+  courses!: courses[];
   @BeforeInsert()
   async hashPassword() {
     if (this.password) {

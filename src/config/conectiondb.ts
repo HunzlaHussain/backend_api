@@ -1,6 +1,7 @@
 import { configDotenv } from "dotenv";
 import { User } from "../entities/User"; // Adjust path as needed
 import { DataSource } from "typeorm";
+import { courses } from "../entities/Course";
 
 configDotenv();
 console.log(process.env.DATABASE_HOST);
@@ -13,7 +14,7 @@ export const AppDataSource = new DataSource({
   username: process.env.DATABASE_USER,
   synchronize: true,
   logging: true,
-  entities: [User],
+  entities: [User, courses],
   migrations: [],
   subscribers: [],
 });
